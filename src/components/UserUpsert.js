@@ -24,7 +24,7 @@ export function UserUpsert() {
   const UpdateUserEmail = (e) => setUserEmail(e.target.value);
   const UpdateUserPassword = (e) => setUserPassword(e.target.value);
   const UpdateUserMobile = (e) => setUserMobile(e.target.value);
-  const UpdateUserType = (e) => setUserType(e.target.value);
+  const UpdateUserType = (item) => setUserType(item);
 
   const register = (e) => {
     e.preventDefault();
@@ -128,13 +128,26 @@ export function UserUpsert() {
           />
         </div>
         <div className="mb-1">
+          <div>
           <input
-            type="text"
+            type="radio"
+            name="user_type"
             value={user_type}
-            onChange={(e) => UpdateUserType(e)}
-            className="form-control"
-            placeholder="Enter userType"
-          />
+            onClick={() => UpdateUserType("user")}
+            
+           />
+           user
+           </div>
+           <div>
+           <input
+            type="radio"
+            name="user_type"
+            value={user_type}
+            onClick={() => UpdateUserType("admin")}
+            
+           />
+           admin
+           </div>
         </div>
         <div className="mb-1">
           {state.user.refuser.user_id ? (

@@ -7,7 +7,7 @@ import {
   getByIdUserAction,
   updateRefUser,
 } from "../redux/UserReducer";
-import { UserModal } from "./UserModal";
+
 
 export function UserList() {
   const state = useSelector((state) => state);
@@ -29,6 +29,7 @@ export function UserList() {
 
   const updateUser = (item) => {
     dispatch(updateRefUser(item));
+    console.log(item);
 
     history.push("/create-user");
   };
@@ -57,10 +58,12 @@ export function UserList() {
                 <th scope="col">UserEmail</th>
                 <th scope="col">UserMobile</th>
                 <th scope="col">UserPassword</th>
-                <th scope="col">UserType</th>
+                <th scope="col">User Type</th>
                 <th scope="col">Update</th>
                 <th scope="col">Delete</th>
-                <th scope="col">Detail</th>
+                
+
+                
               </tr>
             </thead>
             <tbody className="table table-bordered table-success">
@@ -88,14 +91,7 @@ export function UserList() {
                       className="btn btn-link alert alert-danger"
                     />
                   </td>
-                  <td>
-                    <input
-                      type="button"
-                      onClick={() => getUserById(item)}
-                      value="Detail"
-                      className="btn btn-link alert alert-primary"
-                    />
-                  </td>
+                 
                 </tr>
               ))}
             </tbody>
@@ -103,7 +99,7 @@ export function UserList() {
         </div>
         <div className="col-3 col-md-2 d-none d-md-block"></div>
       </div>
-      <UserModal />
+   
     </>
   );
 }
