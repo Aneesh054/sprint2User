@@ -30,7 +30,10 @@ export const UserLogin = () => {
     setTimeout(() => setErrorOperation(false), 5000);
 
     console.log(userName, userPassword);
-    console.log(state.UserLogin.userRefDetails.userName, state.UserLogin.userRefDetails.userPassword);
+    console.log(
+      state.UserLogin.userRefDetails.userName,
+      state.UserLogin.userRefDetails.userPassword
+    );
     console.log(state.message);
   };
 
@@ -42,7 +45,6 @@ export const UserLogin = () => {
 
   return (
     <div>
-      
       <div className="row">
         <div className="col-3 col-md-3 d-none d-md-block"></div>
         <div className="col-12 col-md-6">
