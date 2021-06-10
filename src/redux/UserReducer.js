@@ -26,7 +26,6 @@ export function createUserAction(payload) {
   };
 }
 
-
 export function updateUserAction(payload) {
   return async (dispatch) => {
     const url = `http://localhost:8080/api/user/${payload.userId}`;
@@ -97,7 +96,6 @@ export function UserReducer(state = initState, action) {
     case REF_USER:
       //
       return { ...state, refuser: action.payload };
-    
 
     default:
       return state;

@@ -196,7 +196,6 @@ export function UserUpsert() {
                 onClick={() => updateType()}
               />
 
-              
               <div class="invalid-feedback">Enter the valid Password</div>
             </div>
             <div className="mb-1">

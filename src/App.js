@@ -21,9 +21,6 @@ function App() {
         <Route exact path="/">
           <UserList />
         </Route>
-        <Route  path="/login">
-          <UserLogin />
-        </Route>
       </Switch>
     </Router>
   );

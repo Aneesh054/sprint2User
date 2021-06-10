@@ -8,7 +8,6 @@ import {
   updateRefUser,
 } from "../redux/UserReducer";
 
-
 export function UserList() {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -50,9 +49,9 @@ export function UserList() {
               User Details Deleted
             </div>
           )}
-          <table >
+          <table>
             <thead className="table table-bordered table-dark">
-              <tr >
+              <tr>
                 <th scope="col">#UserId</th>
                 <th scope="col">UserName</th>
                 <th scope="col">UserEmail</th>
@@ -61,9 +60,6 @@ export function UserList() {
                 <th scope="col">UserType</th>
                 <th scope="col">Update</th>
                 <th scope="col">Delete</th>
-                
-
-                
               </tr>
             </thead>
             <tbody className="table table-bordered table-success">
@@ -73,7 +69,7 @@ export function UserList() {
                   <td>{item.userName}</td>
                   <td>{item.userEmail}</td>
                   <td>{item.userMobile}</td>
-                  <td>{("*********")}</td>
+                  <td>{"*********"}</td>
                   <td>{item.userType}</td>
                   <td>
                     <input
@@ -91,7 +87,6 @@ export function UserList() {
                       className="btn btn-link alert alert-danger"
                     />
                   </td>
-                 
                 </tr>
               ))}
             </tbody>
@@ -99,7 +94,6 @@ export function UserList() {
         </div>
         <div className="col-3 col-md-2 d-none d-md-block"></div>
       </div>
-   
     </>
   );
 }
