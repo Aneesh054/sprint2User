@@ -16,6 +16,9 @@ export function AppNavBar() {
           <Nav.Link as={Link} to="/list-user">
             List USER
           </Nav.Link>
+          <Nav.Link as={Link} to="/login">
+            LOGIN
+          </Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

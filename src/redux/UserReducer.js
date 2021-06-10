@@ -8,8 +8,7 @@ const USER_UPDATE = "USER_UPDATE";
 const USER_GET_ALL = "USER_GET_ALL";
 const USER_GET_BY_ID = "USER_GET_BY_ID";
 const USER_DELETE = "USER_DELETE";
-const USER_LOGIN = "USER_LOGIN";
-const USER_LOGOUT = "USER_LOGOUT";
+
 const REF_USER = "REF_USER";
 
 export function createUserAction(payload) {
@@ -27,18 +26,7 @@ export function createUserAction(payload) {
   };
 }
 
-export function userLoginAction(payload) {
-  console.log(payload.userName,payload.userPassword);
-  return async (dispatch) => {
-    const url = `http://localhost:8080/api/user/login/${payload.userName}/${payload.userPassword}`;
-    const response = await fetch(url);
-    const userObj = await response.json();
-    console.log(userObj);
-  };
-}
-export function userLogoutAction() {
-  return { type: USER_LOGOUT, payload: {} };
-}
+
 export function updateUserAction(payload) {
   return async (dispatch) => {
     const url = `http://localhost:8080/api/user/${payload.userId}`;
@@ -109,10 +97,7 @@ export function UserReducer(state = initState, action) {
     case REF_USER:
       //
       return { ...state, refuser: action.payload };
-    case USER_LOGIN:
-      return { ...state, loginDetails: action.payload };
-    case USER_LOGOUT:
-      return { ...state, loginDetails: action.payload };
+    
 
     default:
       return state;
