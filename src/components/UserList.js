@@ -73,7 +73,7 @@ export function UserList() {
                   <td>{item.userName}</td>
                   <td>{item.userEmail}</td>
                   <td>{item.userMobile}</td>
-                  <td>{item.userPassword}</td>
+                  <td>{("*********")}</td>
                   <td>{item.userType}</td>
                   <td>
                     <input

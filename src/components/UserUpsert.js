@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createUserAction, updateUserAction } from "../redux/UserReducer";
 //capture information
+
 export function UserUpsert() {
   const dispatch = useDispatch();
   const formUser = useRef();
@@ -10,7 +11,7 @@ export function UserUpsert() {
 
   const state = useSelector((state) => state);
   console.log(state);
-
+  const [type, setType] = useState("password");
   const [userName, setUserName] = useState(state.user.refuser.userName);
   const [userEmail, setUserEmail] = useState(state.user.refuser.userEmail);
   const [userPassword, setUserPassword] = useState(
@@ -25,7 +26,17 @@ export function UserUpsert() {
 
   const UpdateUserName = (e) => setUserName(e.target.value);
   const UpdateUserEmail = (e) => setUserEmail(e.target.value);
-  const UpdateUserPassword = (e) => setUserPassword(e.target.value);
+  const UpdateUserPassword = (e) => {
+    setType(e.target.type);
+    setUserPassword(e.target.value);
+  };
+  const updateType = () => {
+    if (type == "text") {
+      setType("password");
+    } else {
+      setType("text");
+    }
+  };
   const UpdateUserMobile = (e) => setUserMobile(e.target.value);
   const UpdateUserType = (item) => setUserType(item);
 
@@ -42,6 +53,11 @@ export function UserUpsert() {
       setTimeout(() => {
         setUnSuccessOperation(false);
       }, 5000);
+      if (!/user/.test(userType)) {
+        if (!/admin/.test(userType)) {
+          setMessage("Select your specification");
+        }
+      }
       if (!/^[6-9][0-9]{9}$/.test(userMobile)) {
         setMessage("Mobile Number is Invalid");
       }
@@ -55,11 +71,11 @@ export function UserUpsert() {
       if (!/^[a-zA-Z0-9. ]{3,}$/.test(userName)) {
         setMessage("Invalid User Name");
       }
-      if (!/user/.test(userType)) {
+      /*if (!/user/.test(userType)) {
         if (!/admin/.test(userType)) {
-          setMessage("select your specification");
+          setMessage("Fill the form");
         }
-      }
+      }*/
     } else {
       dispatch(
         createUserAction({
@@ -129,118 +145,141 @@ export function UserUpsert() {
   };
 
   return (
-    <div className="row">
-      <div className="col-3 col-md-3 d-none d-md-block"></div>
-      <div className="col-12 col-md-6">
-        <h3 className="alert alert-secondary d-flex justify-content-center">
-          {state.user.refuser.userId ? "Update User" : "User Registration"}
-        </h3>
+    <div>
+      <div className="row">
+        <div className="col-3 col-md-3 d-none d-md-block"></div>
+        <div className="col-12 col-md-6">
+          <h3 className="alert alert-secondary d-flex justify-content-center">
+            {state.user.refuser.userId ? "Update User" : "User Registration"}
+          </h3>
 
-        {successoperation && (
-          <div className="alert alert-success d-flex justify-content-center mb-1 p-2">
-            User Details Added
-          </div>
-        )}
+          {successoperation && (
+            <div className="alert alert-success d-flex justify-content-center mb-1 p-2">
+              User Details Added
+            </div>
+          )}
 
-        {unsuccessoperation && (
-          <div className="alert alert-danger d-flex justify-content-center mb-1 p-2">
-            {message}
-          </div>
-        )}
-        <form ref={formUser} className="needs-validation" noValidate>
-          <div className="mb-1">
-            <input
-              type="text"
-              value={userName}
-              onChange={(e) => UpdateUserName(e)}
-              className="form-control"
-              placeholder="Enter userName"
-              pattern="[a-zA-Z0-9. ]{3,}"
-              required
-            />
-          </div>
-          <div className="mb-1">
-            <input
-              type="password"
-              value={userPassword}
-              onChange={(e) => UpdateUserPassword(e)}
-              className="form-control"
-              placeholder="Enter password"
-              pattern="[a-zA-z0-9@#!$*&%]{8,12}"
-              required
-            />
-          </div>
-          <div className="mb-1">
-            <input
-              type="email"
-              value={userEmail}
-              onChange={(e) => UpdateUserEmail(e)}
-              className="form-control"
-              placeholder="Enter email"
-              pattern="^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$"
-              required
-            />
-          </div>
-          <div className="mb-1">
-            <input
-              type="text"
-              value={userMobile}
-              onChange={(e) => UpdateUserMobile(e)}
-              className="form-control"
-              placeholder="Enter mobile"
-              pattern="[6-9][0-9]{9}"
-              required
-            />
-          </div>
-          <div className="mb-1">
-            {state.user.refuser.userId ? (
-              <div></div>
-            ) : (
-              <div>
-                <h6>Select your specification</h6>
-                <div>
-                  <h5>user</h5>
-                  <input
-                    type="radio"
-                    name="userType"
-                    value={userType}
-                    onClick={() => UpdateUserType("user")}
-                    required
-                  />
-                </div>
-                <div>
-                  <h5>admin</h5>
-                  <input
-                    type="radio"
-                    name="userType"
-                    value={userType}
-                    onClick={() => UpdateUserType("admin")}
-                    required
-                  />
-                </div>
-              </div>
-            )}
-          </div>
-          <div className="mb-1">
-            {state.user.refuser.userId ? (
+          {unsuccessoperation && (
+            <div className="alert alert-danger d-flex justify-content-center mb-1 p-2">
+              {message}
+            </div>
+          )}
+          <form ref={formUser} className="needs-validation" noValidate>
+            <div className="mb-1">
               <input
-                type="button"
-                className="btn btn-secondary w-100"
-                value="Update Details"
-                onClick={(e) => updateUser(e)}
+                type="text"
+                value={userName}
+                onChange={(e) => UpdateUserName(e)}
+                className="form-control"
+                placeholder="Enter userName"
+                pattern="[a-zA-Z0-9. ]{3,}"
+                required
               />
-            ) : (
+              <div class="valid-feedback">Looks good!</div>
+              <div class="invalid-feedback">Enter the valid username</div>
+            </div>
+
+            <div className="mb-1">
               <input
-                type="button"
-                className="btn btn-secondary w-100"
-                value="REGISTER"
-                onClick={(e) => register(e)}
+                type={type}
+                value={userPassword}
+                onChange={(e) => UpdateUserPassword(e)}
+                className="form-control"
+                placeholder="Enter password"
+                pattern="[a-zA-z0-9@#!$*&%]{8,12}"
+                required
               />
-            )}
-          </div>
-        </form>
+              <div>show password</div>
+              <input
+                type="checkbox"
+                name="showbox"
+                onClick={() => updateType()}
+              />
+
+              
+              <div class="invalid-feedback">Enter the valid Password</div>
+            </div>
+            <div className="mb-1">
+              <input
+                type="email"
+                value={userEmail}
+                onChange={(e) => UpdateUserEmail(e)}
+                className="form-control"
+                placeholder="Enter email"
+                pattern="^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$"
+                required
+              />
+              <div class="valid-feedback">Looks good!</div>
+              <div class="invalid-feedback">Enter the valid Email</div>
+            </div>
+            <div className="mb-1">
+              <input
+                type="text"
+                value={userMobile}
+                onChange={(e) => UpdateUserMobile(e)}
+                className="form-control"
+                placeholder="Enter mobile"
+                pattern="[6-9][0-9]{9}"
+                required
+              />
+              <div class="valid-feedback">Looks good!</div>
+              <div class="invalid-feedback">Enter the valid Mobile Number</div>
+            </div>
+            <div className="mb-1">
+              {state.user.refuser.userId ? (
+                <div></div>
+              ) : (
+                <div>
+                  <h6>Select your specification</h6>
+                  <div>
+                    <h5>user</h5>
+
+                    <input
+                      type="radio"
+                      name="userType"
+                      value={userType}
+                      onClick={() => UpdateUserType("user")}
+                      required
+                    />
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">
+                      <div>Enter your specification</div>
+                    </div>
+                  </div>
+                  <div>
+                    <h5>admin</h5>
+                    <input
+                      type="radio"
+                      name="userType"
+                      value={userType}
+                      onClick={() => UpdateUserType("admin")}
+                      required
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+            <div className="mb-1">
+              {state.user.refuser.userId ? (
+                <input
+                  type="button"
+                  className="btn btn-secondary w-100"
+                  value="Update Details"
+                  onClick={(e) => updateUser(e)}
+                />
+              ) : (
+                <input
+                  type="button"
+                  className="btn btn-secondary w-100"
+                  value="REGISTER"
+                  onClick={(e) => register(e)}
+                />
+              )}
+            </div>
+          </form>
+        </div>
+        <div className="col-3 col-md-3 d-none d-md-block"></div>
       </div>
-      <div className="col-3 col-md-3 d-none d-md-block"></div>
     </div>
   );
 }
