@@ -58,7 +58,7 @@ export function UserList() {
                 <th scope="col">UserEmail</th>
                 <th scope="col">UserMobile</th>
                 <th scope="col">UserPassword</th>
-                <th scope="col">User Type</th>
+                <th scope="col">UserType</th>
                 <th scope="col">Update</th>
                 <th scope="col">Delete</th>
                 
@@ -69,12 +69,12 @@ export function UserList() {
             <tbody className="table table-bordered table-success">
               {[...state.user.list].map((item, index) => (
                 <tr key={index}>
-                  <th scope="row">{item.user_id}</th>
-                  <td>{item.user_name}</td>
-                  <td>{item.user_email}</td>
-                  <td>{item.user_mobile}</td>
-                  <td>{item.user_password}</td>
-                  <td>{item.user_type}</td>
+                  <th scope="row">{item.userId}</th>
+                  <td>{item.userName}</td>
+                  <td>{item.userEmail}</td>
+                  <td>{item.userMobile}</td>
+                  <td>{item.userPassword}</td>
+                  <td>{item.userType}</td>
                   <td>
                     <input
                       type="button"

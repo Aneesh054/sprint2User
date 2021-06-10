@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export function AppNavBar() {
   return (
-    <Navbar bg="dark" expand="lg" variant="warning">
+    <Navbar bg="primary" expand="lg" variant="light">
       <Navbar.Brand as={Link} to="/">
         VEHICLE SERVICE MANAGEMENT
       </Navbar.Brand>
