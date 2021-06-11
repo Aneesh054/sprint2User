@@ -40,7 +40,7 @@ export function UserList() {
       <div className="row">
         <div className="col-3 col-md-2 d-none d-md-block"></div>
         <div className="col-12 col-md-8">
-          <h3 className="alert alert-secondary d-flex justify-content-center">
+          <h3 className="alert alert-warning d-flex justify-content-center">
             List of Users
           </h3>
 
@@ -62,7 +62,7 @@ export function UserList() {
                 <th scope="col">Delete</th>
               </tr>
             </thead>
-            <tbody className="table table-bordered table-success">
+            <tbody className="table table-bordered ">
               {[...state.user.list].map((item, index) => (
                 <tr key={index}>
                   <th scope="row">{item.userId}</th>
@@ -76,7 +76,7 @@ export function UserList() {
                       type="button"
                       onClick={() => updateUser(item)}
                       value="EDIT"
-                      className="btn btn-link alert alert-primary"
+                      className="btn btn-link alert alert-success"
                     />
                   </td>
                   <td>

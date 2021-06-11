@@ -149,7 +149,7 @@ export function UserUpsert() {
       <div className="row">
         <div className="col-3 col-md-3 d-none d-md-block"></div>
         <div className="col-12 col-md-6">
-          <h3 className="alert alert-secondary d-flex justify-content-center">
+          <h3 className="alert alert-warning d-flex justify-content-center">
             {state.user.refuser.userId ? "Update User" : "User Registration"}
           </h3>
 
@@ -196,7 +196,7 @@ export function UserUpsert() {
                 onClick={() => updateType()}
               />
 
-              <div class="invalid-feedback">Enter the valid Password</div>
+              <div class="invalid-feedback">Enter the Password length in between 8 to 12</div>
             </div>
             <div className="mb-1">
               <input
@@ -269,7 +269,7 @@ export function UserUpsert() {
               ) : (
                 <input
                   type="button"
-                  className="btn btn-secondary w-100"
+                  className="btn btn-success w-100"
                   value="REGISTER"
                   onClick={(e) => register(e)}
                 />
